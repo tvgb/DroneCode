@@ -4,7 +4,7 @@ import olympe
 from olympe.messages.camera import start_recording, stop_recording
 from olympe.messages import gimbal
 
-with olympe.Drone("192.168.42.1") as drone:
+with olympe.Drone("192.168.42.1", loglevel=4) as drone:
     drone.connection()
 
     # Start video recording while the drone is flying
