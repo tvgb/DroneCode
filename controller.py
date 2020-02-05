@@ -25,7 +25,6 @@ def set_gimbal(drone,set_yaw,set_pitch,set_roll):
 
 
 
-
 '''
 
 drone.connection()
