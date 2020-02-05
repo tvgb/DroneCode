@@ -5,7 +5,7 @@ from olympe.messages import gimbal
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 
 def get_drone(ip):
-    drone = olympe.Drone(ip, loglevel=4)
+    drone = olympe.Drone(ip, loglevel=1) # loglevel 1 is only errors
     print('Created drone')
     return drone
 

@@ -1,23 +1,10 @@
-# -*- coding: UTF-8 -*-
+from controller import get_drone, set_gimbal
 
-import olympe
-from olympe.messages import gimbal
 
-with olympe.Drone("192.168.42.1", loglevel=1) as drone:
-    drone.connection()
+print('Creating drone')
+drone = get_drone('192.168.42.1')
+print('Drone created \n')
 
-    cameraAction = drone(gimbal.set_target(
-        gimbal_id=0,
-        control_mode="position",
-        yaw_frame_of_reference="none",
-        yaw=0.0,
-        pitch_frame_of_reference="absolute",
-        pitch=-90,
-        roll_frame_of_reference="none",
-        roll=0.0,
-    )).wait()
-
-    if not cameraAction.success():
-        raise RuntimeError("Cannot set gimbal position target")
-    else:
-        print('ROTATED GIMBAL!')
+print('Setting gimbal')
+set_gimbal(drone, 45, 45, 45)
+print('Gimbal set')
