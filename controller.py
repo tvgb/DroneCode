@@ -13,14 +13,13 @@ def set_gimbal(drone,set_yaw,set_pitch,set_roll):
     drone(gimbal.set_target(
         gimbal_id=0,
         control_mode="position",
-        yaw_frame_of_reference="none",
+        yaw_frame_of_reference="absolute",
         yaw=set_yaw,
         pitch_frame_of_reference="absolute",
         pitch=set_pitch,
-        roll_frame_of_reference="none",
+        roll_frame_of_reference="absolute",
         roll=set_roll,
     )).wait()
-
 
 
 
