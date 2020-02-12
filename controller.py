@@ -9,16 +9,16 @@ def get_drone(ip):
     print('Created drone')
     return drone
 
-def set_gimbal(drone,set_yaw,set_pitch,set_roll):
+def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     drone(gimbal.set_target(
         gimbal_id=0,
-        control_mode="position",
+        control_mode="set_mode",
         yaw_frame_of_reference="absolute",
         yaw=set_yaw,
         pitch_frame_of_reference="absolute",
         pitch=set_pitch,
         roll_frame_of_reference="absolute",
-        roll=set_roll,
+        roll=set_roll,  
     )).wait()
 
 
