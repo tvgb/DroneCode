@@ -1,6 +1,6 @@
+from __future__ import print_function
 from controller import get_drone, set_gimbal
 import time
-from __future__ import print_function
 from olympe.messages.ardrone3.PilotingState import PositionChanged
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged
 from olympe.messages.ardrone3.Piloting import TakeOff
