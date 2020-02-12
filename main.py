@@ -8,12 +8,12 @@ drone.connection()
 print('Drone created \n')
 
 print('Setting gimbal')
-set_gimbal(drone, 0.0, 0.0, 0.0).wait
+set_gimbal(drone, 0.0, 0.0, 0.0)
 print('Gimbal set')
 
 time.sleep(1)
 
 print('Setting gimbal')
-set_gimbal(drone, 45.0, 45.0, 45.0).wait
+set_gimbal(drone, 45.0, 45.0, 45.0)
 print('Gimbal set')
 
