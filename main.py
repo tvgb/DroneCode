@@ -22,10 +22,10 @@ print('Gimbal set')
 time.sleep(3)
 
 print('Setting gimbal')
-set_gimbal(drone, "velocity", -1.0, 0.0, 0.0)
+set_gimbal(drone, "velocity", -10.0, 0.0, 0.0)
 print('Gimbal set')
 
-time.sleep(1)
+time.sleep(0.1)
 
 print('Setting gimbal')
 set_gimbal(drone, "position", 0.0, 0.0, 0.0)
