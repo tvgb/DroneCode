@@ -19,7 +19,7 @@ def takeoff(drone):
     drone(TakeOff()).wait()
     print('Drone has taken off')
 
-def move(drone,x,y,z,psi=None):
+def move(drone,x,y,z,psi=0.0):
     drone(moveBy(x, y, z, psi)).wait()
     print('Drone moved by ', x, y, z, ' (x,y,z) in meters')
 
