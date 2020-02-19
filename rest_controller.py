@@ -29,12 +29,12 @@ def take_off():
 
 @app.route('/flyBack')
 def flyBackwards():
-    drone.moveby(drone,-1,0,0,0)
+    controller.moveby(drone,-1,0,0,0)
     return 'flying 1 meter backwards'
 
 @app.route('/flyForward')
 def flyForwards():
-    drone.moveby(drone,1,0,0,0)
+    controller.moveby(drone,1,0,0,0)
     return 'flying 1 meter forwards'
 
 @app.route('/land')
