@@ -42,7 +42,7 @@ def move_by(x, y, z):
         'message': f'Flying {x} in x direction, {y} in y direction, {z} in z direction'
     }), 200
 
-@app.route('/flyBack')
+@app.route('/flyBackward')
 def flyBackwards():
     controller.moveby(drone,-1,0,0,0)
     return 'flying 1 meter backwards'
