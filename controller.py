@@ -21,9 +21,8 @@ def takeoff(drone):
         print('Drone has taken off')
     except:
         print('Code failed when trying to run funciton takeoff()')
-    finally:
         drone(Landing()).wait()
-    
+
 
 def move(drone,x,y,z,psi=0.0):
     try:
@@ -31,7 +30,6 @@ def move(drone,x,y,z,psi=0.0):
         print('Drone moved by ', x, y, z, ' (x,y,z) in meters')
     except:
         print('Code failed when trying to run funciton move()')
-    finally:
         drone(Landing()).wait()
     
 
@@ -54,7 +52,6 @@ def moveto(drone, latitude, longitude, altitude, orientation_mode, heading):
         print('Moving to:', 'lat:', latitude, 'long:', longitude, 'alt:', altitude)
     except:
         print('Code failed when trying to run function moveto()')
-    finally:
         drone(Landing()).wait()
 
 
