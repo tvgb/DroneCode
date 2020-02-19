@@ -16,25 +16,47 @@ def position(drone):
     print("GPS position before take-off :", drone.get_state(HomeChanged))
 
 def takeoff(drone):
-    drone(TakeOff()).wait()
-    print('Drone has taken off')
+    try:
+        drone(TakeOff()).wait()
+        print('Drone has taken off')
+    except:
+        print('Code failed when trying to run funciton takeoff()')
+    finally:
+        drone(Landing()).wait()
+    
 
 def move(drone,x,y,z,psi=0.0):
-    drone(moveBy(x, y, z, psi)).wait()
-    print('Drone moved by ', x, y, z, ' (x,y,z) in meters')
+    try:
+        drone(moveBy(x, y, z, psi)).wait()
+        print('Drone moved by ', x, y, z, ' (x,y,z) in meters')
+    except:
+        print('Code failed when trying to run funciton move()')
+    finally:
+        drone(Landing()).wait()
+    
 
 def land(drone):
-    drone(Landing()).wait()
-    print('Drone landed')
+    try:
+        drone(Landing()).wait()
+        print('Drone landed')
+    except:
+        print('Code failed when trying to run funciton land()')
 
 def moveto(drone, latitude, longitude, altitude, orientation_mode, heading):
-    drone(moveTo(
-        latitude,
-        longitude,
-        altitude,
-        orientation_mode,
-        heading
-    )).wait
+    try:
+        drone(moveTo(
+            latitude,
+            longitude,
+            altitude,
+            orientation_mode,
+            heading
+        )).wait
+        print('Moving to:', 'lat:', latitude, 'long:', longitude, 'alt:' altitude)
+    except:
+        print('Code failed when trying to run function moveto()')
+    finally:
+        drone(Landing()).wait()
+
 
 def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     drone(gimbal.set_target(
