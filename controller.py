@@ -3,7 +3,7 @@
 import olympe
 from olympe.messages import gimbal
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged, HomeChanged
-from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing
+from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
 
 
 def get_drone(ip):
@@ -26,6 +26,15 @@ def move(drone,x,y,z,psi=None):
 def land(drone):
     drone(Landing()).wait()
     print('Drone landed')
+
+def moveto(drone, latitude, longitude, altitude, orientation_mode, heading):
+    drone(moveTo(
+        latitude,
+        longitude,
+        altitude,
+        orientation_mode,
+        heading
+    )).wait
 
 def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     drone(gimbal.set_target(
