@@ -20,9 +20,13 @@ if __name__ == '__main__':
 
         time.sleep(3)
 
-        move(drone, 0, 0, 0.1)
+        move(drone, 1, 0, 0)
         
-        time.sleep(3)
+        time.sleep(10)
+
+        move(drone, -1, 0, 0)
+
+        time.sleep(10)
 
     finally:
         land(drone)
