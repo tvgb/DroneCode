@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import controller
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
 
+
 app = Flask(__name__)
 
 drone = None # Global drone vriable
@@ -15,7 +16,7 @@ def connect_to_drone():
     global drone
     drone = controller.get_drone('192.168.42.1')
     drone.connection()
-    print('gimbal state: ',olympe.enums.gimbal.state)
+    # print('gimbal state: ', olympe.enums.gimbal.state)
     return 'Connecting to drone'
 
 @app.route('/getPosition')
