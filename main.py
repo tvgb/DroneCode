@@ -3,21 +3,27 @@ from controller import get_drone, set_gimbal, position, takeoff, land
 import time
 from olympe.messages.ardrone3.PilotingState import PositionChanged
 
-print('Creating drone')
-drone = get_drone('192.168.42.1')
-drone.connection()
-print('Drone created \n')
+if __name__ == '__main__':
 
-position(drone)
+    try:
+        print('Creating drone')
+        drone = get_drone('192.168.42.1')
 
-time.sleep(3)
+        drone.connection()
+        print('Established connection')
+        
+        position(drone)
 
-takeoff(drone)
+        time.sleep(3)
 
-time.sleep(3)
+        takeoff(drone)
 
-land(drone)
+        time.sleep(3)
 
-time.sleep(10)
+    finally:
+        land(drone)
 
-drone.disconnection()
+        time.sleep(10)
+
+        drone.disconnection()
+    
