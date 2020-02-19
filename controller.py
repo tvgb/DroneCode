@@ -21,7 +21,7 @@ def takeoff(drone):
 
 def move(drone,x,y,z,psi=None):
     drone(moveBy(x, y, z, psi)).wait()
-    print('Drone moved by ', x, y, z, ' (x,y,z)')
+    print('Drone moved by ', x, y, z, ' (x,y,z) in meters')
 
 def land(drone):
     drone(Landing()).wait()
