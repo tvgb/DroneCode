@@ -29,14 +29,14 @@ def take_off():
 
 @app.route('/moveTo/<float:latitude>/<float:longitude>/<float:altitude>')
 def move_to(latitude, longitude, altitude):
-    controller.moveto(drone, latitude, longitude, altitude)
+    controller.moveto(drone, latitude, longitude, altitude, 0, 0)
     return jsonify({
         'message': f'Flying to lat: {latitude}, long: {longitude}, alt: {altitude}'
     }), 200
 
 @app.route('/moveBy/<float:x>/<float:y>/<float:z>')
 def move_by(x, y, z):
-    controller.move(drone, x, y, z)
+    controller.moveby(drone, x, y, z)
     return jsonify({
         'message': f'Flying {x} in x direction, {y} in y direction, {z} in z direction'
     }), 200
@@ -48,3 +48,6 @@ def land():
 
 @app.route('/disconnect')
 def disconnect():
+    return jsonify({
+        'message': 'Disconnected from drone'
+    }), 200
