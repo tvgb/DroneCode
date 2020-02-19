@@ -1,5 +1,5 @@
 from __future__ import print_function
-from controller import get_drone, set_gimbal, position, takeoff, land
+from controller import get_drone, set_gimbal, position, takeoff, land, move
 import time
 from olympe.messages.ardrone3.PilotingState import PositionChanged
 
@@ -18,6 +18,10 @@ if __name__ == '__main__':
 
         takeoff(drone)
 
+        time.sleep(3)
+
+        move(drone, 0, 0, -0.1)
+        
         time.sleep(3)
 
     finally:
