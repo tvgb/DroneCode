@@ -51,7 +51,7 @@ def moveto(drone, latitude, longitude, altitude, orientation_mode, heading):
             orientation_mode,
             heading
         )).wait
-        print('Moving to:', 'lat:', latitude, 'long:', longitude, 'alt:' altitude)
+        print('Moving to:', 'lat:', latitude, 'long:', longitude, 'alt:', altitude)
     except:
         print('Code failed when trying to run function moveto()')
     finally:
