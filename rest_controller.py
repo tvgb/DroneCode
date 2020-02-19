@@ -17,3 +17,17 @@ def connect_to_drone():
     drone.connection()
     return 'Connecting to drone'
 
+
+@app.route('/getPosition')
+def get_position():
+    return controller.position(drone)
+
+@app.route('/takeOff')
+def take_off():
+    controller.takeoff(drone)
+    return 'taking off'
+
+@app.route('/land')
+def land():
+    controller.land(drone)
+    return 'landing'
