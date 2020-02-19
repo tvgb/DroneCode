@@ -17,3 +17,7 @@ takeoff(drone)
 time.sleep(3)
 
 land(drone)
+
+time.sleep(10)
+
+drone.disconnection()
