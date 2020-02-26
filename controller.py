@@ -61,7 +61,9 @@ def stream(drone):
     print("Olympe streaming example output dir: {}".format(drone.tempd))
     drone.h264_frame_stats = []
     drone.h264_stats_file = open('h264_stats.csv', 'w+')
-    drone.h264_stats_writer = csv.DictWriter(drone.h264_stats_file, ['fps', 'bitrate'])
+    drone.h264_stats_writer = csv.DictWriter(
+        drone.h264_stats_file, ['fps', 'bitrate', drone.set_streaming_outputfiles()]
+        )
     drone.h264_stats_writer.writeheader()
 
 
