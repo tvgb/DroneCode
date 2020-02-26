@@ -89,6 +89,7 @@ def move_to():
 @app.route('/moveBy', methods=['POST'])
 def move_by():
     try:
+        # Needs translation because of different labels between drone api and unity 
         x_movement = request.json['z_movement']
         y_movement = request.json['x_movement']
         z_movement = -request.json['y_movement']

@@ -67,7 +67,7 @@ img:active {
     border-right: 5px solid grey;
 
     display: grid;
-    grid-template-columns: 16% 16% 16% auto;
+    grid-template-columns: 16% 16% 16% 26% 26%;
     grid-template-rows: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
 }
 
@@ -100,6 +100,16 @@ img:active {
 #backDiv {
     grid-column: 1 / 4;
     grid-row: 5 / 7;
+}
+
+#turnCounterClockwiseDiv {
+    grid-column: 5 / 6;
+    grid-row: 1 / 4;
+}
+
+#turnClockwiseDiv {
+    grid-column: 5 / 6;
+    grid-row: 4 / 7;
 }
 
 #upDiv {

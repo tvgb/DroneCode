@@ -5,7 +5,7 @@ const localIP = 'http://localhost:5000'
 
 const imgPack = "pack2";
 
-const MOVEMENT_UNIT = 0.1;
+const MOVEMENT_UNIT = 0.25;
 
 $("#connectToDroneImg").attr("src",`./images/${imgPack}/connect.png`);
 $("#takeOffImg").attr("src",`./images/${imgPack}/takeOff.png`);
