@@ -54,9 +54,7 @@ def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     )).wait()
 
 
-
 def stream(drone):
-    drone.start_video_streaming()
     drone.tempd = tempfile.mkdtemp(prefix="olympe_streaming_test_")
     print("Olympe streaming example output dir: {}".format(drone.tempd))
     drone.h264_frame_stats = []
@@ -65,20 +63,15 @@ def stream(drone):
         drone.h264_stats_file, ['fps', 'bitrate']
         )
     drone.h264_stats_writer.writeheader()
+    drone.set_streaming_callbacks(h264_cb=drone.h264_frame_cb)
+    drone.set_streaming_output_files(
+        h264_data_file=os.path.join(self.tempd, 'h264_data.264'),
+        h264_meta_file=os.path.join(self.tempd, 'h264_metadata.json'))
+    drone.start_video_streaming()
+    
 
 
 '''
-def stream(drone):
-    drone.start_video_streaming()
-    time.sleep(10)
-    drone.h264_frame_stats = []
-    drone.h264_stats_file = open('h264_stats.csv', 'w+')
-    drone.h264_stats_writer = csv.DictWriter(drone.h264_stats_file, ['fps', 'bitrate'])
-    drone.h264_stats_writer.writeheader()
-    drone.stop_video_streaming()
-
-
-
 
 print('Setting gimbal')
 set_gimbal(drone, "position", 0.0, 0.0, 0.0)
