@@ -1,5 +1,5 @@
 from __future__ import print_function
-from controller import get_drone, set_gimbal, position, takeoff, land
+from controller import get_drone, set_gimbal, position, takeoff, land, stream
 import time
 from olympe.messages.ardrone3.PilotingState import PositionChanged
 
@@ -12,7 +12,7 @@ if __name__ == '__main__':
         drone.connection()
         print('Established connection')
 
-        controller.stream(drone)
+        stream(drone)
 
 
     finally:
