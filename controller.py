@@ -68,6 +68,14 @@ def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     )).wait()
 
 
+def stream(drone):
+    drone.start_video_streaming()
+    for i in range 10:
+        drone.h264_frame_stats = []
+        drone.h264_stats_file = open(
+            os.path.join(self.tempd, 'h264_stats.csv'), 'w+')
+    drone.stop_video_streaming()
+
 
 '''
 

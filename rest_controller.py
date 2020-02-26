@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 import controller
-from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
+#from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
 
 
 app = Flask(__name__)
