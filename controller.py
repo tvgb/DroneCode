@@ -2,6 +2,7 @@
 
 import olympe
 import os
+import csv
 from olympe.messages import gimbal
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged, HomeChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
@@ -68,8 +69,9 @@ def stream(drone):
     drone.start_video_streaming()
     for i in range (10):
         drone.h264_frame_stats = []
-        drone.h264_stats_file = open(
-            os.path.join("", 'h264_stats.csv'), 'w+')
+        drone.h264_stats_file = open(os.path.join("", 'h264_stats.csv'), 'w+')
+        drone.h264_stats_writer = csv.DictWriter(drone.h264_stats_file, ['fps', 'bitrate'])
+        drone.h264_stats_writer.writeheader()
     drone.stop_video_streaming()
 
 
