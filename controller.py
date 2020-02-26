@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import olympe
+import os
 from olympe.messages import gimbal
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged, HomeChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
@@ -8,20 +9,15 @@ from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
 
 def get_drone(ip):
     drone = olympe.Drone(ip, loglevel=1) # loglevel 1 is only errors
-    print('Created drone')
     return drone
 
 def position(drone):
     drone(GPSFixStateChanged(_policy = 'wait'))
-    print("GPS position before take-off :", drone.get_state(HomeChanged))
+    return drone.get_state(HomeChanged)
 
 def takeoff(drone):
-    try:
-        drone(TakeOff()).wait()
-        print('Drone has taken off')
-    except:
-        print('Code failed when trying to run funciton takeoff()')
-        drone(Landing()).wait()
+    drone(TakeOff()).wait()
+
 
 
 def moveby(drone,x,y,z,psi=0.0):
@@ -67,6 +63,14 @@ def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
         roll=set_roll,  
     )).wait()
 
+
+def stream(drone):
+    drone.start_video_streaming()
+    for i in range (10):
+        drone.h264_frame_stats = []
+        drone.h264_stats_file = open(
+            os.path.join("", 'h264_stats.csv'), 'w+')
+    drone.stop_video_streaming()
 
 
 '''
