@@ -11,25 +11,11 @@ if __name__ == '__main__':
 
         drone.connection()
         print('Established connection')
-        
-        position(drone)
 
-        time.sleep(3)
+        controller.stream(drone)
 
-        takeoff(drone)
-
-        time.sleep(3)
-
-        move(drone, 1, 0, 0)
-        
-        time.sleep(10)
-
-        move(drone, -1, 0, 0)
-
-        time.sleep(10)
 
     finally:
-        land(drone)
 
         time.sleep(10)
 
