@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import controller
 import sys
-from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
+from olympe.messages.ardrone3.Piloting import Landing
 
 
 app = Flask(__name__)
@@ -85,14 +85,14 @@ def move_by(x, y, z):
         'message': f'Flying {x} in x direction, {y} in y direction, {z} in z direction'
     }), 200
 
-@app.route('/flyBack')
+@app.route('/flyBackward')
 def flyBackwards():
-    drone.moveby(drone,-1,0,0,0)
+    controller.moveby(drone,-1,0,0,0)
     return 'flying 1 meter backwards'
 
 @app.route('/flyForward')
 def flyForwards():
-    drone.moveby(drone,1,0,0,0)
+    controller.moveby(drone,1,0,0,0)
     return 'flying 1 meter forwards'
 
 @app.route('/land')
