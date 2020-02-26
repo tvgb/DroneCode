@@ -109,13 +109,22 @@ $("#downImg").click(function() {
     sendHttpRequest('moveBy', data)
 })
 
-$("#rotationImg").click(function() {
+$("#turnCounterClockwiseImg").click(function() {
     addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
         'z_movement': 0,
         'rotation': 0.19625
+    })
+
+$("#turnClockwiseImg").click(function() {
+    addMessageToBox('Trying to move');
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0,
+        'z_movement': 0,
+        'rotation': -0.19625
     })
 
     sendHttpRequest('moveBy', data)
