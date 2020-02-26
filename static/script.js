@@ -12,7 +12,7 @@ $("#droneImg").attr("src",`./images/${imgPack}/drone.png`);
 
 
 $("#connectToDroneImg").click(function() {
-    sendHttpRequest('');
+    sendHttpRequest('connectToDrone');
 });
 
 $("#takeOffImg").click(function() {
@@ -36,6 +36,66 @@ $("#gpsImg").click(function() {
     sendHttpRequest('moveTo', data=data);
 });
 
+$("#forwardImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0,
+        'z_movement': 0.5
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#backImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0,
+        'z_movement': -0.5
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#leftImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': -0.5,
+        'y_movement': 0,
+        'z_movement': 0
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#rightImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': 0.5,
+        'y_movement': 0,
+        'z_movement': 0
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#upImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0.5,
+        'z_movement': 0
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#downImg").click(function() {
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': -0.5,
+        'z_movement': 0
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
 const addMessageToBox = function(message) {
     $("#messageBox").append(`<p class="infoMessage">${message}</p>`);
 
@@ -46,7 +106,7 @@ const addMessageToBox = function(message) {
 const sendHttpRequest = function(request, data=null) {
     $.ajax({
         method: "POST",
-        url: `${schooleIP}/${request}`,
+        url: `${droneIP}/${request}`,
         data: data,
         contentType: "application/json"
     }).done(function(data) {
