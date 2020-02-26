@@ -8,20 +8,15 @@ from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
 
 def get_drone(ip):
     drone = olympe.Drone(ip, loglevel=1) # loglevel 1 is only errors
-    print('Created drone')
     return drone
 
 def position(drone):
     drone(GPSFixStateChanged(_policy = 'wait'))
-    print("GPS position before take-off :", drone.get_state(HomeChanged))
+    return drone.get_state(HomeChanged)
 
 def takeoff(drone):
-    try:
-        drone(TakeOff()).wait()
-        print('Drone has taken off')
-    except:
-        print('Code failed when trying to run funciton takeoff()')
-        drone(Landing()).wait()
+    drone(TakeOff()).wait()
+
 
 
 def moveby(drone,x,y,z,psi=0.0):
