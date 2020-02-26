@@ -23,16 +23,21 @@ def connect_to_drone():
     global drone
 
     try:
+        print('try')
         drone = controller.get_drone('192.168.42.1')
         drone.connection()
         return jsonify({
             'message': 'Connected to drone'
         }), 200
     except:
+        print('error')
+
         return jsonify({
             'message': 'Could not connect to drone',
             'error' : sys.exc_info()[0]
         }), 500
+
+    
 
 
 @app.route('/getPosition')
