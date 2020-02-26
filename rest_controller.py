@@ -24,10 +24,17 @@ def connect_to_drone():
     try:
         print('try')
         drone = controller.get_drone('192.168.42.1')
-        drone.connection()
-        return jsonify({
-            'message': 'Connected to drone'
-        }), 200
+        connection = drone.connection()
+
+        if connection[0][0]:
+            return jsonify({
+                'message': 'Connected to drone'
+            }), 200
+        else:
+            return jsonify({
+                'message': 'Could not connect to drone'
+            }), 200
+        
     except:
         print('error')
 
