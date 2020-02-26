@@ -19,14 +19,10 @@ def hello_world():
 @app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
     global drone
-    print('connect_to_drone')
 
     try:
-        print('try')
         drone = controller.get_drone('192.168.42.1')
         connection = drone.connection()
-
-        print(connection)
 
         if connection[0]:
             return jsonify({
