@@ -58,7 +58,7 @@ def take_off():
         return jsonify({
             'message': 'Failed when trying to take off. Landing...',
             'error': sys.exc_info()[0]
-        })
+        }), 500
 
 @app.route('/moveTo')
 def move_to():
@@ -76,14 +76,26 @@ def move_to():
         return jsonify({
             'message': 'Failed when trying to fly to GPS coordinates. Landing...',
             'error': sys.exc_info()[0]
-        })
+        }), 500
 
 @app.route('/moveBy')
-def move_by(x, y, z):
-    controller.moveby(drone, x, y, z)
-    return jsonify({
-        'message': f'Flying {x} in x direction, {y} in y direction, {z} in z direction'
-    }), 200
+def move_by():
+    try:
+        x_movement = request.json['x_movement']
+        y_movement = request.json['y_movement']
+        z_movement = request.json['z_movement']
+
+        controller.moveby(drone, x_movement, y_movement, z_movement)
+        return jsonify({
+            'message': f'Flying {x_movement} in x direction, {y_movement} in y direction, {z_movement} in z direction'
+        }), 200
+    except:
+        drone(Landing()).wait()
+        return jsonify({
+            'message': 'Failed when trying to fly to move drone. Landing...',
+            'error': sys.exc_info()[0]
+        }), 500
+    
 
 @app.route('/flyBackward')
 def flyBackwards():
@@ -97,11 +109,28 @@ def flyForwards():
 
 @app.route('/land')
 def land():
-    controller.land(drone)
-    return 'landing'
+    try:
+        controller.land(drone)
+        return jsonify({
+            'message': 'Landing drone.'
+        }), 200
+    except:
+        return jsonify({
+            'message': 'Failed when trying to land drone.',
+            'error': sys.exc_info()[0]
+        }), 500
+    
 
 @app.route('/disconnect')
 def disconnect():
-    return jsonify({
-        'message': 'Disconnected from drone'
-    }), 200
+    try:
+        controller.disconnect(drone)
+        return jsonify({
+            'message': 'Disconnected from drone.'
+        }), 200
+    except:
+        return jsonify({
+            'message': 'Failed when trying to disconnect from drone.',
+            'error': sys.exc_info()[0]
+        }), 500
+    
