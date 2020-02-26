@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import controller
 import sys
 from olympe.messages.ardrone3.Piloting import Landing
@@ -7,6 +7,7 @@ from olympe.messages.ardrone3.Piloting import Landing
 
 app = Flask(__name__)
 CORS(app)
+cors = CORS(app, resources={"*": {"origins": "*"}})
 
 drone = None # Global drone vriable
 
@@ -17,6 +18,7 @@ def hello_world():
     }), 200
 
 @app.route('/connectToDrone')
+@cross_origin(supports_credentials=True) 
 def connect_to_drone():
     global drone
 
