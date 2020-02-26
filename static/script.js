@@ -5,6 +5,8 @@ const localIP = 'http://localhost:5000'
 
 const imgPack = "pack2";
 
+const MOVEMENT_UNIT = 0.1;
+
 $("#connectToDroneImg").attr("src",`./images/${imgPack}/connect.png`);
 $("#takeOffImg").attr("src",`./images/${imgPack}/takeOff.png`);
 $("#landImg").attr("src",`./images/${imgPack}/land.png`);
@@ -46,7 +48,7 @@ $("#forwardImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
-        'z_movement': 0.5
+        'z_movement': MOVEMENT_UNIT
     })
 
     sendHttpRequest('moveBy', data)
@@ -57,7 +59,7 @@ $("#backImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
-        'z_movement': -0.5
+        'z_movement': -MOVEMENT_UNIT
     })
 
     sendHttpRequest('moveBy', data)
@@ -66,7 +68,7 @@ $("#backImg").click(function() {
 $("#leftImg").click(function() {
     addMessageToBox('Trying to move');
     data = JSON.stringify({
-        'x_movement': -0.5,
+        'x_movement': -MOVEMENT_UNIT,
         'y_movement': 0,
         'z_movement': 0
     })
@@ -77,7 +79,7 @@ $("#leftImg").click(function() {
 $("#rightImg").click(function() {
     addMessageToBox('Trying to move');
     data = JSON.stringify({
-        'x_movement': 0.5,
+        'x_movement': MOVEMENT_UNIT,
         'y_movement': 0,
         'z_movement': 0
     })
@@ -89,7 +91,7 @@ $("#upImg").click(function() {
     addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
-        'y_movement': 0.5,
+        'y_movement': MOVEMENT_UNIT,
         'z_movement': 0
     })
 
@@ -100,7 +102,7 @@ $("#downImg").click(function() {
     addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
-        'y_movement': -0.5,
+        'y_movement': -MOVEMENT_UNIT,
         'z_movement': 0
     })
 
