@@ -48,7 +48,8 @@ $("#forwardImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
-        'z_movement': MOVEMENT_UNIT
+        'z_movement': MOVEMENT_UNIT,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
@@ -59,7 +60,8 @@ $("#backImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
-        'z_movement': -MOVEMENT_UNIT
+        'z_movement': -MOVEMENT_UNIT,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
@@ -70,7 +72,8 @@ $("#leftImg").click(function() {
     data = JSON.stringify({
         'x_movement': -MOVEMENT_UNIT,
         'y_movement': 0,
-        'z_movement': 0
+        'z_movement': 0,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
@@ -81,7 +84,8 @@ $("#rightImg").click(function() {
     data = JSON.stringify({
         'x_movement': MOVEMENT_UNIT,
         'y_movement': 0,
-        'z_movement': 0
+        'z_movement': 0,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
@@ -92,7 +96,8 @@ $("#upImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': MOVEMENT_UNIT,
-        'z_movement': 0
+        'z_movement': 0,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
@@ -103,7 +108,8 @@ $("#downImg").click(function() {
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': -MOVEMENT_UNIT,
-        'z_movement': 0
+        'z_movement': 0,
+        'rotation': 0.0
     })
 
     sendHttpRequest('moveBy', data)
