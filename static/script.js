@@ -12,22 +12,27 @@ $("#droneImg").attr("src",`./images/${imgPack}/drone.png`);
 
 
 $("#connectToDroneImg").click(function() {
+    addMessageToBox('Trying to connect to drone...');
     sendHttpRequest('connectToDrone');
 });
 
 $("#takeOffImg").click(function() {
-   sendHttpRequest('takeOff');
+    addMessageToBox('Trying to take off...');
+    sendHttpRequest('takeOff');
 });
 
 $("#landImg").click(function() {
+    addMessageToBox('Trying to land...');
     sendHttpRequest('land');
 });
 
 $("#abortImg").click(function() {
+    addMessageToBox('Trying to abort');
     sendHttpRequest('abort');
 });
 
 $("#gpsImg").click(function() {
+    addMessageToBox('Trying to move to gps coordinates');
     data = JSON.stringify({
         'latitude': null,
         'longitude': null,
@@ -37,6 +42,7 @@ $("#gpsImg").click(function() {
 });
 
 $("#forwardImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
@@ -47,6 +53,7 @@ $("#forwardImg").click(function() {
 })
 
 $("#backImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0,
@@ -57,6 +64,7 @@ $("#backImg").click(function() {
 })
 
 $("#leftImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': -0.5,
         'y_movement': 0,
@@ -67,6 +75,7 @@ $("#leftImg").click(function() {
 })
 
 $("#rightImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0.5,
         'y_movement': 0,
@@ -77,6 +86,7 @@ $("#rightImg").click(function() {
 })
 
 $("#upImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': 0.5,
@@ -87,6 +97,7 @@ $("#upImg").click(function() {
 })
 
 $("#downImg").click(function() {
+    addMessageToBox('Trying to move');
     data = JSON.stringify({
         'x_movement': 0,
         'y_movement': -0.5,
