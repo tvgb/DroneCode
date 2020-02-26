@@ -17,6 +17,7 @@ def hello_world():
     }), 200
 
 @app.route('/connectToDrone')
+@cross_origin(supports_credentials=True)
 def connect_to_drone():
     global drone
 

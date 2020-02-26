@@ -1,7 +1,6 @@
 const homeIP = 'http://192.168.0.195:5000';
 const droneIP = 'http://192.168.42.23:5000';
 const schooleIP = 'http://10.22.117.235:5000';
-// schooleIP = 'http://10.22.117.235:5000';
 
 const imgPack = "pack2";
 
@@ -106,9 +105,13 @@ const addMessageToBox = function(message) {
 const sendHttpRequest = function(request, data=null) {
     $.ajax({
         method: "POST",
-        url: `${droneIP}/${request}`,
+        url: `${schooleIP}/${request}`,
         data: data,
-        contentType: "application/json"
+        contentType: "application/json; charset=utf-8",
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
     }).done(function(data) {
         addMessageToBox(data.message);
     });
