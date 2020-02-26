@@ -65,8 +65,8 @@ def stream(drone):
     drone.h264_stats_writer.writeheader()
     drone.set_streaming_callbacks(h264_cb=drone.h264_frame_cb)
     drone.set_streaming_output_files(
-        h264_data_file=os.path.join(self.tempd, 'h264_data.264'),
-        h264_meta_file=os.path.join(self.tempd, 'h264_metadata.json'))
+        h264_data_file=os.path.join(drone.tempd, 'h264_data.264'),
+        h264_meta_file=os.path.join(drone.tempd, 'h264_metadata.json'))
     drone.start_video_streaming()
     
 
