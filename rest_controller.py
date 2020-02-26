@@ -93,8 +93,9 @@ def move_by():
         x_movement = request.json['z_movement']
         y_movement = request.json['x_movement']
         z_movement = -request.json['y_movement']
+        rotation = request.json['rotation']
 
-        controller.moveby(drone, x_movement, y_movement, z_movement)
+        controller.moveby(drone, x_movement, y_movement, z_movement, rotation)
         return jsonify({
             'message': f'Flying {x_movement} in x direction, {y_movement} in y direction, {z_movement} in z direction'
         }), 200
