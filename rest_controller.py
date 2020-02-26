@@ -21,6 +21,7 @@ def hello_world():
 @cross_origin(supports_credentials=True) 
 def connect_to_drone():
     global drone
+    print('connect_to_drone')
 
     try:
         print('try')
