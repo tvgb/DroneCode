@@ -4,6 +4,7 @@ import olympe
 import os
 import csv
 import time
+import tempfile
 from olympe.messages import gimbal
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged, HomeChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
@@ -53,6 +54,19 @@ def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
     )).wait()
 
 
+
+def stream(drone):
+    drone.tempd = tempfile.mkdtemp(prefix="olympe_streaming_test_")
+    print("Olympe streaming example output dir: {}".format(drone.tempd))
+    drone.h264_frame_stats = []
+    drone.h264_stats_file = open(
+        os.path.join(drone.tempd, 'h264_stats.csv'), 'w+')
+    drone.h264_stats_writer = csv.DictWriter(
+        drone.h264_stats_file, ['fps', 'bitrate'])
+    drone.h264_stats_writer.writeheader()
+
+
+'''
 def stream(drone):
     drone.start_video_streaming()
     time.sleep(10)
@@ -63,7 +77,7 @@ def stream(drone):
     drone.stop_video_streaming()
 
 
-'''
+
 
 print('Setting gimbal')
 set_gimbal(drone, "position", 0.0, 0.0, 0.0)
