@@ -41,7 +41,7 @@ def connect_to_drone():
             'error' : sys.exc_info()[0]
         }), 500
 
-@app.route('/getPosition')
+@app.route('/getPosition', methods=['POST'])
 def get_position():
     try:
         position = controller.position(drone)
@@ -54,7 +54,7 @@ def get_position():
             'error' : sys.exc_info()[0]
         }), 500
 
-@app.route('/takeOff')
+@app.route('/takeOff', methods=['POST'])
 def take_off():
     try:
         controller.takeoff(drone)
@@ -68,7 +68,7 @@ def take_off():
             'error': sys.exc_info()[0]
         }), 500
 
-@app.route('/moveTo')
+@app.route('/moveTo', methods=['POST'])
 def move_to():
     try:
         latitude = request.json['latitude']
@@ -86,7 +86,7 @@ def move_to():
             'error': sys.exc_info()[0]
         }), 500
 
-@app.route('/moveBy')
+@app.route('/moveBy', methods=['POST'])
 def move_by():
     try:
         x_movement = request.json['x_movement']
@@ -105,17 +105,17 @@ def move_by():
         }), 500
     
 
-@app.route('/flyBackward')
+@app.route('/flyBackward', methods=['POST'])
 def flyBackwards():
     controller.moveby(drone,-1,0,0,0)
     return 'flying 1 meter backwards'
 
-@app.route('/flyForward')
+@app.route('/flyForward', methods=['POST'])
 def flyForwards():
     controller.moveby(drone,1,0,0,0)
     return 'flying 1 meter forwards'
 
-@app.route('/land')
+@app.route('/land', methods=['POST'])
 def land():
     try:
         controller.land(drone)
@@ -129,7 +129,7 @@ def land():
         }), 500
     
 
-@app.route('/disconnect')
+@app.route('/disconnect', methods=['POST'])
 def disconnect():
     try:
         controller.disconnect(drone)
