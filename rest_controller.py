@@ -26,7 +26,9 @@ def connect_to_drone():
         drone = controller.get_drone('192.168.42.1')
         connection = drone.connection()
 
-        if connection[0][0]:
+        print(connection)
+
+        if connection[0]:
             return jsonify({
                 'message': 'Connected to drone'
             }), 200
