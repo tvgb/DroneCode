@@ -5,7 +5,7 @@ const localIP = 'http://localhost:5000'
 
 const imgPack = "pack2";
 
-const MOVEMENT_UNIT = 0.1;
+const MOVEMENT_UNIT = 0.25;
 
 $("#connectToDroneImg").attr("src",`./images/${imgPack}/connect.png`);
 $("#takeOffImg").attr("src",`./images/${imgPack}/takeOff.png`);
@@ -104,6 +104,27 @@ $("#downImg").click(function() {
         'x_movement': 0,
         'y_movement': -MOVEMENT_UNIT,
         'z_movement': 0
+    })
+
+    sendHttpRequest('moveBy', data)
+})
+
+$("#turnCounterClockwiseImg").click(function() {
+    addMessageToBox('Trying to move');
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0,
+        'z_movement': 0,
+        'rotation': 0.19625
+    })
+
+$("#turnClockwiseImg").click(function() {
+    addMessageToBox('Trying to move');
+    data = JSON.stringify({
+        'x_movement': 0,
+        'y_movement': 0,
+        'z_movement': 0,
+        'rotation': -0.19625
     })
 
     sendHttpRequest('moveBy', data)
