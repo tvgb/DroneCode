@@ -97,7 +97,7 @@ def move_by():
 
         controller.moveby(drone, x_movement, y_movement, z_movement, rotation)
         return jsonify({
-            'message': f'Flying {x_movement} in x direction, {y_movement} in y direction, {z_movement} in z direction'
+            'message': f'Moving x dir: {x_movement}, y dir: {y_movement}, z dir: {z_movement}, rotation: {rotation}'
         }), 200
     except:
         drone(Landing()).wait()
