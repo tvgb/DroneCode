@@ -89,9 +89,9 @@ def move_to():
 @app.route('/moveBy', methods=['POST'])
 def move_by():
     try:
-        x_movement = request.json['x_movement']
-        y_movement = request.json['y_movement']
-        z_movement = request.json['z_movement']
+        x_movement = request.json['z_movement']
+        y_movement = request.json['x_movement']
+        z_movement = -request.json['y_movement']
 
         controller.moveby(drone, x_movement, y_movement, z_movement)
         return jsonify({
