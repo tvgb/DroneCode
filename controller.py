@@ -57,7 +57,7 @@ def stream(drone):
     drone.start_video_streaming()
     time.sleep(10)
     drone.h264_frame_stats = []
-    drone.h264_stats_file = open(os.path.join("", 'h264_stats.csv'), 'w+')
+    drone.h264_stats_file = open('h264_stats.csv', 'w+')
     drone.h264_stats_writer = csv.DictWriter(drone.h264_stats_file, ['fps', 'bitrate', drone.h264_frame_stats])
     drone.h264_stats_writer.writeheader()
     drone.stop_video_streaming()
