@@ -115,8 +115,11 @@ $("#turnCounterClockwiseImg").click(function() {
         'x_movement': 0,
         'y_movement': 0,
         'z_movement': 0,
-        'rotation': 0.19625
+        'rotation': -0.19625
     })
+
+    sendHttpRequest('moveBy', data)
+})
 
 $("#turnClockwiseImg").click(function() {
     addMessageToBox('Trying to move');
@@ -124,7 +127,7 @@ $("#turnClockwiseImg").click(function() {
         'x_movement': 0,
         'y_movement': 0,
         'z_movement': 0,
-        'rotation': -0.19625
+        'rotation': 0.19625
     })
 
     sendHttpRequest('moveBy', data)
