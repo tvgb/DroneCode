@@ -115,8 +115,6 @@ const addMessageToBox = function(message) {
 }
 
 const sendHttpRequest = function(request, data=null) {
-    console.log('lol123')
-
     $.ajax({
         method: "POST",
         url: `${localIP}/${request}`,
