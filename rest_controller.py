@@ -7,7 +7,6 @@ from olympe.messages.ardrone3.Piloting import Landing
 
 app = Flask(__name__)
 CORS(app)
-cors = CORS(app, resources={"*": {"origins": "*"}})
 
 drone = None # Global drone vriable
 
@@ -17,8 +16,7 @@ def hello_world():
         'message': f'Hello world!'
     }), 200
 
-@app.route('/connectToDrone')
-@cross_origin(supports_credentials=True) 
+@app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
     global drone
     print('connect_to_drone')
@@ -37,9 +35,6 @@ def connect_to_drone():
             'message': 'Could not connect to drone',
             'error' : sys.exc_info()[0]
         }), 500
-
-    
-
 
 @app.route('/getPosition')
 def get_position():
