@@ -34,6 +34,8 @@ $("#abortImg").click(function() {
 });
 
 $("#gpsImg").click(function() {
+    console.log('GETTING GPS COORDINATES');
+
     sendHttpRequest('getPosition', (dronePos) => {
         console.log('LOGGING:', dronePos);
 
