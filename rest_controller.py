@@ -112,7 +112,8 @@ def move_to():
             #controller.moveto(drone, latitude, longitude, drone_altitude, 0, 0)
             return jsonify({
                 'message2': f'Position before flight: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
-                'message': f'Flying to lat: {destination_latitude}, long: {destination_longitude}, alt: {destination_altitude}'
+                'message': f'Flying {haversine(startPos, endPos, unit=Unit.METERS)} meters',
+                # 'message': f'Flying to lat: {destination_latitude}, long: {destination_longitude}, alt: {destination_altitude}'
             }), 200
         else:
             return jsonify({
