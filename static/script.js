@@ -184,8 +184,8 @@ const sendHttpRequest = function(request, data=null, callback=null) {
         if (data.message2){
             addMessageToBox(data.message2);
         }
-        if (data.position) {
-        
+        if (data.position && callback) {
+            
             console.log(`Returning position: ${data.position}`);
             callback(data.position);            
         }
