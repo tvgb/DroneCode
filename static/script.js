@@ -38,7 +38,7 @@ $("#gpsImg").click(function() {
     sendHttpRequest('getPosition', callback=setGpsCoords);
 });
 
-setGpsCoords = function(dronePos) {
+function setGpsCoords(dronePos) {
     drone_latitude = dronePos['latitude']
     drone_longitude = dronePos['longitude']
     drone_altitude = dronePos['altitude']
