@@ -7,10 +7,10 @@ const imgPack = "pack2";
 
 const MOVEMENT_UNIT = 0.25;
 
-$("#connectToDroneImg").attr("src",`./images/${imgPack}/connect.png`);
-$("#takeOffImg").attr("src",`./images/${imgPack}/takeOff.png`);
-$("#landImg").attr("src",`./images/${imgPack}/land.png`);
-$("#droneImg").attr("src",`./images/${imgPack}/drone.png`);
+$("#connectToDroneImg").attr("src",`static/images/${imgPack}/connect.png`);
+$("#takeOffImg").attr("src",`static/images/${imgPack}/takeOff.png`);
+$("#landImg").attr("src",`static/images/${imgPack}/land.png`);
+$("#droneImg").attr("src",`static/images/${imgPack}/drone.png`);
 
 
 $("#connectToDroneImg").click(function() {
