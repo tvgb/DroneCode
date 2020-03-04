@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 #import controller
 import sys
+from PIL import Image
 #from olympe.messages.ardrone3.Piloting import Landing
 
 
@@ -13,6 +14,16 @@ drone = None # Global drone vriable
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+def gen():
+    while True:
+        frame = Image.open('static/images/random.jpg')
+        yield (b'--frame\r\n'
+               b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video_feed', methods=['GET'])
+def video_feed():
+    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # @app.route('/connectToDrone', methods=['POST'])
 # def connect_to_drone():
