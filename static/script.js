@@ -34,14 +34,16 @@ $("#abortImg").click(function() {
 });
 
 $("#gpsImg").click(function() {
-    dronePos = sendHttpRequest('getPosition');
-    drone_latitude = dronePos['latitude']
-    drone_longitude = dronePos['longitude']
-    drone_altitude = dronePos['altitude']
+    sendHttpRequest('getPosition', (dronePos) => {
+        drone_latitude = dronePos['latitude']
+        drone_longitude = dronePos['longitude']
+        drone_altitude = dronePos['altitude']
 
-    document.getElementById("latitude").value = drone_latitude
-    document.getElementById("longitude").value = drone_longitude
-    document.getElementById("altitude").value = drone_altitude
+        document.getElementById("latitude").value = drone_latitude
+        document.getElementById("longitude").value = drone_longitude
+        document.getElementById("altitude").value = drone_altitude
+    });
+    
 });
 
 $("#forwardImg").click(function() {
