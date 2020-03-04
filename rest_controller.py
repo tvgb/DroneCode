@@ -117,7 +117,7 @@ def move_to():
             }), 200
         else:
             return jsonify({
-                'message': f'Distance is {Round(haversine(startPos, endPos, unit=Unit.METERS),3)} meters, please choose a distance shorter than {maxDistanceMoved} meters.'
+                'message': f'Distance is {round(haversine(startPos, endPos, unit=Unit.METERS),3)} meters, please choose a distance shorter than {maxDistanceMoved} meters.'
             })
     except:
         drone(Landing()).wait()
