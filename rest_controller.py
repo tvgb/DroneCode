@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS, cross_origin
 import controller
 import sys
@@ -10,11 +10,9 @@ CORS(app)
 
 drone = None # Global drone vriable
 
-@app.route('/', methods=['POST'])
-def hello_world():
-    return jsonify({
-        'message': f'Hello world!'
-    }), 200
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('./static/index.html')
 
 @app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
