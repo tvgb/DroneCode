@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Drone Controller</title>
-    <script src="jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">  
+    <script src="static/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">  
   </head>
   <body>
     <div id="mainContainerDiv">
@@ -15,44 +15,55 @@
         </div>
   
         <div class="img-with-text">
-          <img id="takeOffImg" src="./images/pack1/takeOff.png">
+          <img id="takeOffImg" src="static/images/pack1/takeOff.png">
           Take off
         </div>
   
         <div class="img-with-text">
-          <img id="landImg" src="./images/pack1/land.png">
+          <img id="landImg" src="static/images/pack1/land.png">
           Land
         </div>
 
         <div class="img-with-text">
-          <img id="gpsImg" src="./images/pack1/gps.png">
+          <img id="gpsImg" src="static/images/pack1/gps.png">
           Move with GPS
         </div>
 
         <div class="img-with-text">
-          <img id="abortImg" src="./images/pack1/abort.png">
+          <img id="abortImg" src="static/images/pack1/abort.png">
           Abort
+        </div>
+
+        <div class="number-input">
+          <h3>Input GPS coordinates of where you want to fly</h3>
+          <input type="number" id="latitude" value="">
+          <input type="number" id="longitude" value="">
+          <input type="number" id="altitude" value="">
+          <button onclick="getGPS()">Send coordinates</button>
         </div>
         
       </div>
       <div id="bottomLeftDiv" class="gridBox">
-        <div id="forwardDiv"> <img id="forwardImg" src="./images/pack1/arrow_up.png"> </div>
-        <div id="leftDiv"> <img id="leftImg" src="./images/pack1/arrow_left.png"> </div>
-        <div id="droneDiv"> <img id="droneImg" src="./images/pack1/drone.png"> </div>
-        <div id="rightDiv"> <img id="rightImg" src="./images/pack1/arrow_right.png"> </div>
-        <div id="backDiv"> <img id="backImg" src="./images/pack1/arrow_down.png"> </div>
-        <div id="turnCounterClockwiseDiv"> <img id="turnCounterClockwiseImg" src="./images/pack1/turn_counter_clockwise.png"> </div>
-        <div id="turnClockwiseDiv"> <img id="turnClockwiseImg" src="./images/pack1/turn_clockwise.png"> </div>
-        <div id="upDiv"> <img id="upImg" src="./images/pack1/arrow_up.png"> </div>
-        <div id="downDiv"> <img id="downImg" src="./images/pack1/arrow_down.png"> </div>
+        <div id="forwardDiv"> <img id="forwardImg" src="static/images/pack1/arrow_up.png"> </div>
+        <div id="leftDiv"> <img id="leftImg" src="static/images/pack1/arrow_left.png"> </div>
+        <div id="droneDiv"> <img id="droneImg" src="static/images/pack1/drone.png"> </div>
+        <div id="rightDiv"> <img id="rightImg" src="static/images/pack1/arrow_right.png"> </div>
+        <div id="backDiv"> <img id="backImg" src="static/images/pack1/arrow_down.png"> </div>
+        <div id="turnCounterClockwiseDiv"> <img id="turnCounterClockwiseImg" src="static/images/pack1/turn_counter_clockwise.png"> </div>
+        <div id="turnClockwiseDiv"> <img id="turnClockwiseImg" src="static/images/pack1/turn_clockwise.png"> </div>
+        <div id="upDiv"> <img id="upImg" src="static/images/pack1/arrow_up.png"> </div>
+        <div id="downDiv"> <img id="downImg" src="static/images/pack1/arrow_down.png"> </div>
       </div>
 
-      <div id="rightDivBox" class="grturnidBox">
+      <div id="rightDivBox" class="gridBox">
         <div id="messageBox"></div>
+        <div id="videoStreamBox">
+          <!-- <img src="{{ url_for('video_feed') }}"> -->
+        </div>
       </div>
       
     </div>
 
   </body>
-  <script src="script.js"></script>
+  <script src="static/script.js"></script>
 </html>

@@ -1,7 +1,9 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 import controller
 import sys
+from PIL import Image
+from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
 from olympe.messages.ardrone3.Piloting import Landing
 
@@ -13,7 +15,20 @@ drone = None # Global drone vriable
 
 @app.route('/', methods=['GET'])
 def index():
-    return 'lol' #render_template('./static/index.html')
+    return render_template('index.html')
+
+
+def gen():
+    while True:
+        frame = Image.open('static/images/random.jpg')
+        yield (b'--frame\r\n'
+               b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/video_feed', methods=['GET'])
+def video_feed():
+    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 @app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
@@ -31,7 +46,7 @@ def connect_to_drone():
             return jsonify({
                 'message': 'Could not connect to drone'
             }), 200
-        
+
     except:
         print('error')
 
@@ -39,6 +54,7 @@ def connect_to_drone():
             'message': 'Could not connect to drone',
             'error' : sys.exc_info()[0]
         }), 500
+
 
 @app.route('/getPosition', methods=['POST'])
 def get_position():
@@ -53,6 +69,7 @@ def get_position():
             'error' : sys.exc_info()[0]
         }), 500
 
+
 @app.route('/takeOff', methods=['POST'])
 def take_off():
     try:
@@ -66,6 +83,7 @@ def take_off():
             'message': 'Failed when trying to take off. Landing...',
             'error': sys.exc_info()[0]
         }), 500
+
 
 @app.route('/moveTo', methods=['POST'])
 def move_to():
@@ -104,6 +122,7 @@ def move_to():
             'error': sys.exc_info()[0]
         }), 500
 
+
 @app.route('/moveBy', methods=['POST'])
 def move_by():
     try:
@@ -130,10 +149,12 @@ def flyBackwards():
     controller.moveby(drone,-1,0,0,0)
     return 'flying 1 meter backwards'
 
+
 @app.route('/flyForward', methods=['POST'])
 def flyForwards():
     controller.moveby(drone,1,0,0,0)
     return 'flying 1 meter forwards'
+
 
 @app.route('/land', methods=['POST'])
 def land():
