@@ -144,7 +144,7 @@ function getGPS() {
     var long = document.getElementById("longitude").value;
     var alt = document.getElementById("altitude").value;
 
-    addMessageToBox(`Latitude: ${lat}, Longitude: ${long}, Altitude: ${alt}`)
+    //addMessageToBox(`Latitude: ${lat}, Longitude: ${long}, Altitude: ${alt}`)
 
     data = JSON.stringify({
         'latitude': lat,
