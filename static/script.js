@@ -35,20 +35,18 @@ $("#abortImg").click(function() {
 
 $("#gpsImg").click(function() {
     console.log('GETTING GPS COORDINATES');
-
-    sendHttpRequest('getPosition', (dronePos) => {
-        console.log(`dronePos: ${dronePos}`);
-
-        drone_latitude = dronePos['latitude']
-        drone_longitude = dronePos['longitude']
-        drone_altitude = dronePos['altitude']
-
-        document.getElementById("latitude").value = drone_latitude
-        document.getElementById("longitude").value = drone_longitude
-        document.getElementById("altitude").value = drone_altitude
-    });
-    
+    sendHttpRequest('getPosition', callback=setGpsCoords);
 });
+
+setGpsCoords = function(dronePos) {
+    drone_latitude = dronePos['latitude']
+    drone_longitude = dronePos['longitude']
+    drone_altitude = dronePos['altitude']
+
+    document.getElementById("latitude").value = drone_latitude
+    document.getElementById("longitude").value = drone_longitude
+    document.getElementById("altitude").value = drone_altitude
+}
 
 $("#forwardImg").click(function() {
     addMessageToBox('Trying to move');
@@ -170,7 +168,7 @@ const addMessageToBox = function(message) {
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
-const sendHttpRequest = function(request, data=null) {
+const sendHttpRequest = function(request, data=null, callback=null) {
     $.ajax({
         method: "POST",
         url: `${localIP}/${request}`,
@@ -188,7 +186,7 @@ const sendHttpRequest = function(request, data=null) {
         }
         if (data.position) {
             console.log('returning position');
-            return data.position
+            callback(data.position);            
         }
     });
 }
