@@ -98,10 +98,13 @@ def move_to():
 
         destination_latitude = request.json['latitude']
         destination_longitude = request.json['longitude']
-        destination_altitude = request.json['altitude']
+        destination_altitude = request.json['altitude'])
 
         startPos = (drone_latitude, drone_longitude)
         endPos = (destination_latitude, destination_longitude)
+
+        print(type(destination_latitude))
+        print(type(drone_latitude))
 
         if (haversine(startPos, endPos, unit=Unit.METERS) < maxDistanceMoved):
             print(haversine(startPos, endPos, unit=METERS))
