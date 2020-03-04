@@ -5,8 +5,6 @@ import sys
 from PIL import Image
 from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
-from olympe.messages.ardrone3.Piloting import Landing
-
 
 app = Flask(__name__)
 CORS(app)
