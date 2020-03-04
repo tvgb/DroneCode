@@ -185,7 +185,8 @@ const sendHttpRequest = function(request, data=null, callback=null) {
             addMessageToBox(data.message2);
         }
         if (data.position) {
-            console.log('returning position');
+        
+            console.log(`Returning position: ${data.position}`);
             callback(data.position);            
         }
     });
