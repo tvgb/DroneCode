@@ -59,7 +59,8 @@ def get_position():
     try:
         position = controller.position(drone)
         return jsonify({
-            'message': f'Drone is at position: {position}'
+            'message': f'Drone is at position: {position}',
+            'position': position 
         })
     except:
         return jsonify({
@@ -111,9 +112,8 @@ def move_to():
             #controller.moveto(drone, drone_latitude, drone_longitude, altitude, 0, 0)
             #controller.moveto(drone, latitude, longitude, drone_altitude, 0, 0)
             return jsonify({
-                'message2': f'Position before flight: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
-                'message': f'Flying {round(haversine(startPos, endPos, unit=Unit.METERS),3)} meters',
-                # 'message': f'Flying to lat: {destination_latitude}, long: {destination_longitude}, alt: {destination_altitude}'
+                'message': f'Position before flight: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
+                'message2': f'Flying {round(haversine(startPos, endPos, unit=Unit.METERS),3)} meters',
             }), 200
         else:
             return jsonify({

@@ -34,13 +34,14 @@ $("#abortImg").click(function() {
 });
 
 $("#gpsImg").click(function() {
-    addMessageToBox('Trying to move to gps coordinates');
-    data = JSON.stringify({
-        'latitude': null,
-        'longitude': null,
-        'altitude': null
-    })
-    sendHttpRequest('moveTo', data=data);
+    dronePos = sendHttpRequest('/getPosition');
+    drone_latitude = dronePos['latitude']
+    drone_longitude = dronePos['longitude']
+    drone_altitude = dronePos['altitude']
+
+    document.getElementById("latitude").value = drone_latitude
+    document.getElementById("longitude").value = drone_longitude
+    document.getElementById("altitude").value = drone_altitude
 });
 
 $("#forwardImg").click(function() {
@@ -139,7 +140,7 @@ $("#turnClockwiseImg").click(function() {
     sendHttpRequest('moveBy', data)
 })
 
-function getGPS() {
+function sendGPS() {
     var lat = document.getElementById("latitude").value;
     var long = document.getElementById("longitude").value;
     var alt = document.getElementById("altitude").value;
@@ -178,6 +179,9 @@ const sendHttpRequest = function(request, data=null) {
         addMessageToBox(data.message);
         if (data.message2){
             addMessageToBox(data.message2);
+        }
+        if (data.position){
+            return data.position
         }
     });
 }
