@@ -37,7 +37,7 @@ $("#gpsImg").click(function() {
     console.log('GETTING GPS COORDINATES');
 
     sendHttpRequest('getPosition', (dronePos) => {
-        console.log('LOGGING:', dronePos);
+        console.log(`dronePos: ${dronePos}`);
 
         drone_latitude = dronePos['latitude']
         drone_longitude = dronePos['longitude']
@@ -186,7 +186,8 @@ const sendHttpRequest = function(request, data=null) {
         if (data.message2){
             addMessageToBox(data.message2);
         }
-        if (data.position){
+        if (data.position) {
+            console.log('returning position');
             return data.position
         }
     });
