@@ -96,6 +96,8 @@ def move_to():
         drone_longitude = dronePos['longitude']
         drone_altitude = dronePos['altitude']
 
+        print(drone_latitude, drone_longitude, drone_altitude)
+
         destination_latitude = request.json['latitude']
         destination_longitude = request.json['longitude']
         destination_altitude = request.json['altitude']
