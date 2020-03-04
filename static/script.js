@@ -33,11 +33,6 @@ $("#abortImg").click(function() {
     sendHttpRequest('abort');
 });
 
-$("#gpsImg").click(function() {
-    console.log('GETTING GPS COORDINATES');
-    sendHttpRequest('getPosition', callback=setGpsCoords);
-});
-
 function setGpsCoords(dronePos) {
     drone_latitude = dronePos['latitude']
     drone_longitude = dronePos['longitude']
@@ -47,6 +42,11 @@ function setGpsCoords(dronePos) {
     document.getElementById("longitude").value = drone_longitude
     document.getElementById("altitude").value = drone_altitude
 }
+
+$("#gpsImg").click(function() {
+    console.log('GETTING GPS COORDINATES');
+    sendHttpRequest('getPosition', callback=setGpsCoords);
+});
 
 $("#forwardImg").click(function() {
     addMessageToBox('Trying to move');
