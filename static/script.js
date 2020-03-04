@@ -176,5 +176,8 @@ const sendHttpRequest = function(request, data=null) {
     }).done(function(data) {
         console.log(data);
         addMessageToBox(data.message);
+        if (data.message2){
+            addMessageToBox(data.message2);
+        }
     });
 }
