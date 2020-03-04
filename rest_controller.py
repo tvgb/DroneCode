@@ -12,7 +12,7 @@ drone = None # Global drone vriable
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('./static/index.html')
+    return 'lol' #render_template('./static/index.html')
 
 @app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
