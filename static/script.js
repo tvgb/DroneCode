@@ -34,7 +34,7 @@ $("#abortImg").click(function() {
 });
 
 $("#gpsImg").click(function() {
-    dronePos = sendHttpRequest('/getPosition');
+    dronePos = sendHttpRequest('getPosition');
     drone_latitude = dronePos['latitude']
     drone_longitude = dronePos['longitude']
     drone_altitude = dronePos['altitude']
