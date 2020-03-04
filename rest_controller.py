@@ -82,7 +82,11 @@ def move_to():
         destination_longitude = request.json['longitude']
         destination_altitude = request.json['altitude']
 
-        if (haversine(dronePos['latitude'], latitude, unit=Unit.m) < maxDistanceMoved):
+        startPos = (drone_latitude, drone_longitude)
+        endPos = (destination_latitude, destination_longitude)
+
+        if (haversine(startPos, endPos, unit=METERS) < maxDistanceMoved):
+            print(haversine(startPos, endPos, unit=METERS))
             #controller.moveto(drone, drone_latitude, drone_longitude, altitude, 0, 0)
             #controller.moveto(drone, latitude, longitude, drone_altitude, 0, 0)
             return jsonify({
