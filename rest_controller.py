@@ -103,7 +103,7 @@ def move_to():
         startPos = (drone_latitude, drone_longitude)
         endPos = (destination_latitude, destination_longitude)
 
-        if (haversine(startPos, endPos, unit=METERS) < maxDistanceMoved):
+        if (haversine(startPos, endPos, unit=Unit.METERS) < maxDistanceMoved):
             print(haversine(startPos, endPos, unit=METERS))
             #controller.moveto(drone, drone_latitude, drone_longitude, altitude, 0, 0)
             #controller.moveto(drone, latitude, longitude, drone_altitude, 0, 0)
