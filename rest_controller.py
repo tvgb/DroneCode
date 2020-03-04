@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS, cross_origin
 import controller
 import sys
-import haversine
+from haversine import haversine, Unit
 from olympe.messages.ardrone3.Piloting import Landing
 
 
@@ -74,17 +74,19 @@ def move_to():
 
     try:
         dronePos = controller.position(drone)
-        dronePos['latitude']
+        drone_latitude = dronePos['latitude']
+        drone_longitude = dronePos['longitude']
+        drone_altitude = dronePos['altitude']
 
-        latitude = request.json['latitude']
-        longitude = request.json['longitude']
-        altitude = request.json['altitude']
+        destination_latitude = request.json['latitude']
+        destination_longitude = request.json['longitude']
+        destination_altitude = request.json['altitude']
 
         if (haversine(dronePos['latitude'], latitude, unit=Unit.m) < maxDistanceMoved):
             #controller.moveto(drone, latitude, longitude, altitude, 0, 0)
             return jsonify({
-                'message2': f'Position before flight: {dronePos['latitude']}, long: {dronePos['longitude']}, alt: {dronePos['altitude']}',
-                'message': f'Flying to lat: {latitude}, long: {longitude}, alt: {altitude}'
+                'message2': f'Position before flight: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
+                'message': f'Flying to lat: {destination_latitude}, long: {destination_longitude}, alt: {destination_altitude}'
             }), 200
         else:
             return jsonify({
