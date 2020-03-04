@@ -54,22 +54,11 @@ def set_gimbal(drone,set_mode,set_yaw,set_pitch,set_roll):
 
 def start_stream(drone):
     stream = Stream(drone)
+
     
 
 
-
 '''
-def stream(drone):
-    drone.start_video_streaming()
-    time.sleep(10)
-    drone.h264_frame_stats = []
-    drone.h264_stats_file = open('h264_stats.csv', 'w+')
-    drone.h264_stats_writer = csv.DictWriter(drone.h264_stats_file, ['fps', 'bitrate'])
-    drone.h264_stats_writer.writeheader()
-    drone.stop_video_streaming()
-
-
-
 
 print('Setting gimbal')
 set_gimbal(drone, "position", 0.0, 0.0, 0.0)
