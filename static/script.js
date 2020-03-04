@@ -139,6 +139,23 @@ $("#turnClockwiseImg").click(function() {
     sendHttpRequest('moveBy', data)
 })
 
+function getGPS() {
+    var lat = document.getElementById("latitude").value;
+    var long = document.getElementById("longitude").value;
+    var alt = document.getElementById("altitude").value;
+
+    addMessageToBox(`Latitude: ${lat}, Longitude: ${long}, Altitude: ${alt}`)
+
+    data = JSON.stringify({
+        'latitude': lat,
+        'longitude': long,
+        'altitude': alt
+    })
+    
+    sendHttpRequest('moveTo', data=data);
+}
+
+
 const addMessageToBox = function(message) {
     $("#messageBox").append(`<p class="infoMessage">${message}</p>`);
 

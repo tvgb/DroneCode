@@ -71,11 +71,13 @@ def take_off():
 @app.route('/moveTo', methods=['POST'])
 def move_to():
     try:
+        lol = controller.position(drone)
+        print(lol)
         latitude = request.json['latitude']
         longitude = request.json['longitude']
         altitude = request.json['altitude']
 
-        controller.moveto(drone, latitude, longitude, altitude, 0, 0)
+        #controller.moveto(drone, latitude, longitude, altitude, 0, 0)
         return jsonify({
             'message': f'Flying to lat: {latitude}, long: {longitude}, alt: {altitude}'
         }), 200
