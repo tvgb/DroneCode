@@ -35,6 +35,8 @@ $("#abortImg").click(function() {
 
 $("#gpsImg").click(function() {
     sendHttpRequest('getPosition', (dronePos) => {
+        console.log('LOGGING:', dronePos);
+
         drone_latitude = dronePos['latitude']
         drone_longitude = dronePos['longitude']
         drone_altitude = dronePos['altitude']
@@ -177,7 +179,7 @@ const sendHttpRequest = function(request, data=null) {
         },
         crossDomain: true
     }).done(function(data) {
-        console.log(data);
+
         addMessageToBox(data.message);
         if (data.message2){
             addMessageToBox(data.message2);
