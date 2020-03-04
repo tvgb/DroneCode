@@ -34,7 +34,7 @@ def moveto(drone, latitude, longitude, altitude, orientation_mode, heading):
         altitude,
         orientation_mode,
         heading
-    )).wait
+    )).wait()
 
 def disconnect(drone):
     drone.disconnection()
