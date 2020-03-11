@@ -45,7 +45,7 @@ function setGpsCoords(dronePos) {
 
 $("#gpsImg").click(function() {
     console.log('GETTING GPS COORDINATES');
-    sendHttpRequest('getPosition', null, setGpsCoords);
+    sendHttpRequest('getPosition', data=null, callback=setGpsCoords);
 });
 
 $("#forwardImg").click(function() {
