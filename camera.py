@@ -13,5 +13,5 @@ class Camera(BaseCamera):
         while True:
             img = open('./image/test_image.jpg', 'rb').read()
 
-            time.sleep(1/30)
+            time.sleep(1)
             yield img
