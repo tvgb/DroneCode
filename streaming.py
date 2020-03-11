@@ -1,5 +1,5 @@
-import tempfile, os, csv
-import olympe, cv2
+import tempfile, os, csv, cv2
+import olympe
 
 class Stream:
     def __init__(self, drone):
@@ -32,10 +32,16 @@ class Stream:
         # Start video streaming
         self.drone.start_video_streaming()
 
+    
+    def stop(self):
+        # Properly stop the video stream and disconnect
+        self.drone.stop_video_streaming()
+        # self.drone.disconnection()
+        self.h264_stats_file.close()
+
     def yuv_frame_cb(self, yuv_frame):
         """
         This function will be called by Olympe for each decoded YUV frame.
-
             :type yuv_frame: olympe.VideoFrame
         """
         # the VideoFrame.info() dictionary contains some useful informations
@@ -55,6 +61,6 @@ class Stream:
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
 
-        # # Use OpenCV to show this frame
-        # cv2.imshow("Olympe Streaming Example", cv2frame)
-        # cv2.waitKey(1)  # please OpenCV for 1 ms...
+        # Use OpenCV to show this frame
+        cv2.imshow("Olympe Streaming Example", cv2frame)
+        cv2.waitKey(1)  # please OpenCV for 1 ms...
