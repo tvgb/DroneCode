@@ -9,6 +9,8 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
+
+        
         while True:
             print('sending image')
             time.sleep(0.1)

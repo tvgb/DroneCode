@@ -61,6 +61,8 @@ class Stream:
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
 
+        cv2.imwrite('./images/frame.jpg', cv2frame)
+
         # Use OpenCV to show this frame
-        cv2.imshow("Olympe Streaming Example", cv2frame)
-        cv2.waitKey(1)  # please OpenCV for 1 ms...
+        # cv2.imshow("Olympe Streaming Example", cv2frame)
+        # cv2.waitKey(1)  # please OpenCV for 1 ms...

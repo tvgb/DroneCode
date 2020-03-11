@@ -5,7 +5,7 @@ import os, csv, time, tempfile
 from olympe.messages import gimbal
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged, HomeChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing, moveTo
-from streaming import Stream
+from stream import Stream
 
 
 def get_drone(ip):
