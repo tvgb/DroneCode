@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
         print('Creating stream')
         stream = Stream(drone)
-        time.sleep(2)
+        time.sleep(10)
 
         print('Starting stream')
         stream.start()
