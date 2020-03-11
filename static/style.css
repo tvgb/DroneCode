@@ -140,9 +140,9 @@ img:active {
     grid-row: 2 / 3; 
 }
 
-#video_feed_img {
-    height: auto;
-    width: auto;
+#video_feed_img, #video_feed_img:active {
+    height: 100%;
+    width: 100%;
 }
 
 #messageBox {
