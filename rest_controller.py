@@ -1,10 +1,18 @@
 from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
+from camera import Camera
 import controller
-import sys
+import sys, os
 from PIL import Image
+from importlib import import_module
+
 from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
+
+if os.environ.get('CAMERA'):
+    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+else:
+    from camera import Camera
 
 app = Flask(__name__)
 CORS(app)
@@ -16,16 +24,16 @@ def index():
     return render_template('index.html')
 
 
-def gen():
+def gen(camera):
     while True:
-        frame = Image.open('static/images/random.jpg')
+        frame = camera.get_frame()
         yield (b'--frame\r\n'
-               b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 @app.route('/video_feed', methods=['GET'])
 def video_feed():
-    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/connectToDrone', methods=['POST'])
