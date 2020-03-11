@@ -11,5 +11,7 @@ class Camera(BaseCamera):
     def frames():
 
         while True:
+            img = open('./image/test_image.jpg', 'rb').read()
+
             time.sleep(1/30)
-            yield Camera.imgs
+            yield img
