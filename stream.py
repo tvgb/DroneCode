@@ -1,5 +1,7 @@
 import tempfile, os, csv, cv2
 import olympe
+from pathlib import Path
+
 
 class Stream:
     def __init__(self, drone):
@@ -14,7 +16,7 @@ class Stream:
         self.h264_stats_writer.writeheader()
 
         self.dirname = 'image'
-        os.mkdir(self.dirname, exist_ok=True)  
+        Path(self.dirname).mkdir(parents=True, exist_ok=True)
 
     def start(self):
         
