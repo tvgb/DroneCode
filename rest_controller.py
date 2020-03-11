@@ -5,6 +5,7 @@ import controller
 import sys, os
 from PIL import Image
 from importlib import import_module
+from stream import Stream
 
 from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
@@ -43,6 +44,9 @@ def connect_to_drone():
     try:
         drone = controller.get_drone('192.168.42.1')
         connection = drone.connection()
+
+        stream = Stream(drone)
+        stream.start()
 
         if connection[0]:
             return jsonify({
