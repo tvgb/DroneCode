@@ -104,15 +104,12 @@ def move_to():
         startPos = (drone_latitude, drone_longitude)
         endPos = (destination_latitude, destination_longitude)
 
-        print(type(destination_latitude))
-        print(type(drone_latitude))
-
         if (haversine(startPos, endPos, unit=Unit.METERS) < maxDistanceMoved):
             print(haversine(startPos, endPos, unit=Unit.METERS))
             controller.moveto(drone, destination_latitude, destination_longitude, destination_altitude, 0, 0)
             #controller.moveto(drone, destination_latitude, destination_longitude, drone_altitude, 0, 0)
             return jsonify({
-                'message': f'Position before flight: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
+                'message': f'Position before flight: lat: {drone_latitude}, long: {drone_longitude}, alt: {drone_altitude}',
                 'message2': f'Flying {round(haversine(startPos, endPos, unit=Unit.METERS),3)} meters',
             }), 200
         else:
