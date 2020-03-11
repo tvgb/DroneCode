@@ -13,6 +13,9 @@ class Stream:
         self.h264_stats_writer = csv.DictWriter(self.h264_stats_file, ['fps', 'bitrate'])
         self.h264_stats_writer.writeheader()
 
+        self.dirname = 'image'
+        os.mkdir(self.dirname)
+
     def start(self):
         
         self.drone.set_streaming_output_files(
@@ -62,7 +65,7 @@ class Stream:
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
 
-        cv2.imwrite('./images/frame.jpg', cv2frame)
+        cv2.imwrite(os.path.join(self.dirname, 'test_image.jpg'), cv2frame)
 
         # Use OpenCV to show this frame
         # cv2.imshow("Olympe Streaming Example", cv2frame)
