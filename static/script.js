@@ -38,14 +38,14 @@ function setGpsCoords(dronePos) {
     drone_longitude = dronePos['longitude']
     drone_altitude = dronePos['altitude']
 
-    document.getElementById("latitude").value = drone_latitude
-    document.getElementById("longitude").value = drone_longitude
-    document.getElementById("altitude").value = drone_altitude
+    document.getElementById("latitude").value = drone_latitude;
+    document.getElementById("longitude").value = drone_longitude;
+    document.getElementById("altitude").value = drone_altitude;
 }
 
 $("#gpsImg").click(function() {
     console.log('GETTING GPS COORDINATES');
-    sendHttpRequest('getPosition', callback=setGpsCoords);
+    sendHttpRequest('getPosition', null, setGpsCoords);
 });
 
 $("#forwardImg").click(function() {
