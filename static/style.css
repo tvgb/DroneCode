@@ -129,11 +129,20 @@ img:active {
 #rightDivBox {
     background-color:  #282828;
     grid-column: 2;
-    grid-row: 1 / 3;
+    grid-row: 1 / 2;
     border-left: 5px solid grey;
 
     padding: 50px 0px 50px 100px;
-    
+}
+
+#videoStreamBox {
+    grid-column: 2;
+    grid-row: 2 / 3; 
+}
+
+#video_feed_img {
+    height: auto;
+    width: auto;
 }
 
 #messageBox {
