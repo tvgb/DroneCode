@@ -11,6 +11,5 @@ class Camera(BaseCamera):
     def frames():
 
         while True:
-            print('sending image')
             time.sleep(1/30)
             yield Camera.imgs
