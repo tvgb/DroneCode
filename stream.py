@@ -44,6 +44,9 @@ class Stream:
         This function will be called by Olympe for each decoded YUV frame.
             :type yuv_frame: olympe.VideoFrame
         """
+        
+        print('NEW FRAME!!!')
+
         # the VideoFrame.info() dictionary contains some useful informations
         # such as the video resolution
         info = yuv_frame.info()
