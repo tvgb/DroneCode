@@ -13,8 +13,8 @@ class Stream:
         self.h264_stats_writer = csv.DictWriter(self.h264_stats_file, ['fps', 'bitrate'])
         self.h264_stats_writer.writeheader()
 
-        self.dirname = 'image'
-        os.mkdir(self.dirname)
+        # self.dirname = 'image'
+        # os.mkdir(self.dirname)  
 
     def start(self):
         
