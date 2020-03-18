@@ -2,10 +2,11 @@ from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 from camera import Camera
 import controller
-import sys, os
+import sys, os, threading
 from PIL import Image
 from importlib import import_module
 from stream import Stream
+from thread_camera import ThreadCamera
 
 from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
@@ -35,9 +36,10 @@ def gen(camera):
 
 @app.route('/video_feed', methods=['GET'])
 def video_feed():
-    camera = Camera()
-    camera.stream = stream
-    return Response(gen(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
+    thread_camera = ThreadCamera()
+    thread_camera.start_camera_thread(stream)
+
+    return Response(gen(thread_camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/connectToDrone', methods=['POST'])
