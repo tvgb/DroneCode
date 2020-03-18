@@ -9,11 +9,11 @@ class Camera(BaseCamera):
     stream = None
 
     @staticmethod
-    def frames(self):
+    def frames():
 
         while True:
             # img = open('./image/test_image.jpg', 'rb').read()
-            if self.stream != None:
+            if Camera.stream != None:
                 frame = Camera.stream.get_latest_frame()
                 time.sleep(1)
             
