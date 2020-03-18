@@ -68,7 +68,12 @@ class Stream:
 
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
-        self.frame = cv2frame.tobytes()
+
+        is_success, image_buffer_array = cv2.imencode('.jpg', cv2frame)
+
+        if is_success:
+            self.frame = image_buffer_array.tobytes()
+
 
         # status = cv2.imwrite(os.path.join(self.dirname, 'test_image.jpg'), cv2frame)
         
