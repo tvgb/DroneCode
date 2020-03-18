@@ -198,10 +198,21 @@ def land():
         }), 500
     
 
-@app.route('/disconnect', methods=['POST'])
+@app.route('/abort', methods=['POST'])
 def disconnect():
     try:
+        global stream
+
+        thread_camera.stop_camera_thread()
+        time.sleep(2)
+
+        stream.stop()
+        stream = None
+        time.sleep(2)
+
         controller.disconnect(drone)
+        time.sleep(2)
+
         return jsonify({
             'message': 'Disconnected from drone.'
         }), 200
