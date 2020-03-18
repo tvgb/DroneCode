@@ -32,7 +32,7 @@ def gen(camera):
     while True:
         frame = camera.get_frame()
         
-        if not isinstance(frame, np.ndarray):
+        if not 'numpy' in str(type(frame)):
             frame = open('./static/images/mario/mario1.jpg', 'rb').read()
 
         yield (b'--frame\r\n'
