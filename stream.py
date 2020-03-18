@@ -19,32 +19,44 @@ class Stream:
         Path(self.dirname).mkdir(parents=True, exist_ok=True)
 
         self.frame = None
+        self.stream_started = False
 
     def start(self):
         
-        self.drone.set_streaming_output_files(
-            h264_data_file=os.path.join(self.tempd, 'h264_data.264'),
-            h264_meta_file=os.path.join(self.tempd, 'h264_metadata.json'),
-            # Here, we don't record the (huge) raw YUV video stream
-            # raw_data_file=os.path.join(self.tempd,'raw_data.bin'),
-            # raw_meta_file=os.path.join(self.tempd,'raw_metadata.json'),
-        )
+        if not self.stream_started:
 
-        # Setup your callback functions to do some live video processing
-        self.drone.set_streaming_callbacks(
-            raw_cb=self.yuv_frame_cb #,
-            #h264_cb=self.h264_frame_cb
-        )
+            self.drone.set_streaming_output_files(
+                h264_data_file=os.path.join(self.tempd, 'h264_data.264'),
+                h264_meta_file=os.path.join(self.tempd, 'h264_metadata.json'),
+                # Here, we don't record the (huge) raw YUV video stream
+                # raw_data_file=os.path.join(self.tempd,'raw_data.bin'),
+                # raw_meta_file=os.path.join(self.tempd,'raw_metadata.json'),
+            )
 
-        # Start video streaming
-        self.drone.start_video_streaming()
+            # Setup your callback functions to do some live video processing
+            self.drone.set_streaming_callbacks(
+                raw_cb=self.yuv_frame_cb #,
+                #h264_cb=self.h264_frame_cb
+            )
+
+            # Start video streaming
+            self.drone.start_video_streaming()
+
+            self.stream_started = True
+        
+        else:
+            print('Stream has already started.')
 
     
     def stop(self):
-        # Properly stop the video stream and disconnect
-        self.drone.stop_video_streaming()
-        # self.drone.disconnection()
-        self.h264_stats_file.close()
+
+        if self.stream_started:
+            # Properly stop the video stream and disconnect
+            self.drone.stop_video_streaming()
+            # self.drone.disconnection()
+            self.h264_stats_file.close()
+        else:
+            print('Cannot stop stream that has not started')
 
     def yuv_frame_cb(self, yuv_frame):
         """

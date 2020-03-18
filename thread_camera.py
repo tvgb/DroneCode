@@ -6,20 +6,32 @@ class ThreadCamera():
         self.frame = None
         self.thread = None
         self.run = True
+        self.isRunning = False
 
 
     def start_camera_thread(self, stream):
-        thread = threading.Thread(target=self.camera_thread, args=(stream,), daemon=True)
-        self.thread = thread
-        self.run = True
 
-        thread.start()
+        if not self.isRunning:
+            thread = threading.Thread(target=self.camera_thread, args=(stream,), daemon=True)
+            self.thread = thread
+            self.run = True
+            self.isRunning = True
+
+            thread.start()
+        else:
+            print('Thread has already been started.')
 
 
     def stop_camera_thread(self):
-        self.run = False
-        self.frame = None
-        self.thread.join()
+
+        if self.isRunning:
+            self.run = False
+            self.isRunning = False
+            self.frame = None
+            self.thread.join()
+        
+        else:
+            print('Cannot stop thread that is not running.')
 
 
     def camera_thread(self, stream):
