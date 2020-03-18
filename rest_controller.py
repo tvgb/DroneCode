@@ -15,7 +15,7 @@ CORS(app)
 
 drone = None # Global drone vriable
 stream = None
-thread_camera = None
+thread_camera = ThreadCamera()
 
 
 @app.route('/', methods=['GET'])
@@ -52,7 +52,6 @@ def gen(camera):
 @app.route('/video_feed', methods=['GET'])
 def video_feed():
     global thread_camera
-    thread_camera = ThreadCamera()
 
     return Response(gen(thread_camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
