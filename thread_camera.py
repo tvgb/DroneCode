@@ -9,6 +9,7 @@ class ThreadCamera():
 
     def start_camera_thread(self, stream):
         thread = threading.Thread(target=self.camera_thread, args=(stream,), daemon=True)
+        self.thread = thread
         thread.start()
 
 

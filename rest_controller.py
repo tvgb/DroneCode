@@ -201,7 +201,7 @@ def land():
 @app.route('/abort', methods=['POST'])
 def disconnect():
     try:
-        global stream
+        global stream, thread_camera
 
         thread_camera.stop_camera_thread()
         time.sleep(2)
