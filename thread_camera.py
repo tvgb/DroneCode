@@ -20,12 +20,10 @@ class ThreadCamera():
         
         while True:
             if stream != None:
-                print('STREAM IS READY')
                 self.frame = stream.frame
+                print(self.frame)
         
             time.sleep(1)
-
-        
 
     
     def get_frame(self):
