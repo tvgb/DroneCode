@@ -17,6 +17,7 @@ else:
 
 app = Flask(__name__)
 CORS(app)
+stream = None
 
 drone = None # Global drone vriable
 
@@ -40,6 +41,7 @@ def video_feed():
 @app.route('/connectToDrone', methods=['POST'])
 def connect_to_drone():
     global drone
+    global stream
 
     try:
         drone = controller.get_drone('192.168.42.1')

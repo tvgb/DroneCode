@@ -18,6 +18,8 @@ class Stream:
         self.dirname = 'image'
         Path(self.dirname).mkdir(parents=True, exist_ok=True)
 
+        self.frame = None
+
     def start(self):
         
         self.drone.set_streaming_output_files(
@@ -66,9 +68,13 @@ class Stream:
 
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
-      
-        status = cv2.imwrite(os.path.join(self.dirname, 'test_image.jpg'), cv2frame)
+        self.frame = cv2
 
+        # status = cv2.imwrite(os.path.join(self.dirname, 'test_image.jpg'), cv2frame)
+        
         # Use OpenCV to show this frame
         # cv2.imshow("Olympe Streaming Example", cv2frame)
         # cv2.waitKey(1)  # please OpenCV for 1 ms...
+
+    def get_latest_frame(self):
+        return self.frame
