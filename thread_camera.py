@@ -18,6 +18,7 @@ class ThreadCamera():
 
     def stop_camera_thread(self):
         self.run = False
+        self.frame = None
         self.thread.join()
 
 
