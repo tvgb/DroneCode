@@ -22,7 +22,10 @@ class ThreadCamera():
             if stream != None:
                 print('STREAM IS READY')
                 self.frame = stream.frame
-                time.sleep(1)
+        
+            time.sleep(1)
+
+        
 
     
     def get_frame(self):
