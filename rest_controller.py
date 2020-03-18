@@ -28,6 +28,10 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/video_only', methods=['GET'])
+def video_only():
+    return render_template('video_only.html')
+
 def gen(camera):
     while True:
         frame = camera.get_frame()
