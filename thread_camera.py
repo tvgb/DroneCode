@@ -23,7 +23,7 @@ class ThreadCamera():
                 self.frame = stream.frame
                 time.sleep(1)
             else:
-                self.frame = open('./static/images/mario/mario1.jpg').read()
+                self.frame = open('./static/images/mario/mario1.jpg', 'rb').read()
 
     
     def get_frame(self):
