@@ -141,8 +141,8 @@ img:active {
 }
 
 #video_feed_img, #video_feed_img:active {
-    height: 100%;
-    width: 100%;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
 }
 
 #messageBox {
