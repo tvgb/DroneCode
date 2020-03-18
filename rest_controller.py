@@ -25,16 +25,6 @@ def index():
 
 @app.route('/video_only', methods=['GET'])
 def video_only():
-    global drone, stream, thread_camera
-
-    drone = controller.get_drone('192.168.42.1')
-    connection = drone.connection()
-
-    stream = Stream(drone)
-    stream.start()
-
-    thread_camera.start_camera_thread(stream)
-
     return render_template('video_only.html')
 
 
