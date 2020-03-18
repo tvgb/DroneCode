@@ -33,12 +33,15 @@ def gen(camera):
         frame = camera.get_frame()
         print('DRONE FRAME')
         print(frame)
-        
+
         if not 'numpy' in str(type(frame)):
             frame = open('./static/images/mario/mario1.jpg', 'rb').read()
 
             print('STATIC FRAM')
             print(frame)
+
+        else:
+            frame = frame.tobytes()
 
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
