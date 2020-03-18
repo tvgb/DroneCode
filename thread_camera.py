@@ -26,7 +26,7 @@ class ThreadCamera():
             else:
                 print('STREAM IS NONE AND NOT READY')
                 self.frame = open('./static/images/maroo/mario1.jpg', 'rb').read()
-                print(self.frame)
+                time.sleep(1)
 
     
     def get_frame(self):
