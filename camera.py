@@ -6,11 +6,20 @@ class Camera(BaseCamera):
     files 1.jpg, 2.jpg and 3.jpg at a rate of one frame per second."""
     # imgs = open('./image/test_image.jpg', 'rb').read()
 
+    stream = None
+
     @staticmethod
-    def frames(stream):
+    def frames(self):
 
         while True:
             # img = open('./image/test_image.jpg', 'rb').read()
-            frame = stream.get_latest_frame()
-            time.sleep(1)
-            yield frame
+            if self.stream != None:
+                frame = Camera.stream.get_latest_frame()
+                time.sleep(1)
+            
+                yield frame
+
+    
+    @staticmethod
+    def set_stream(stream):
+        Camera.stream = stream
