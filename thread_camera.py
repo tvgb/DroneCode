@@ -21,8 +21,6 @@ class ThreadCamera():
         while True:
             if stream != None:
                 self.frame = stream.frame
-                print(self.frame)
-                print(type(self.frame))
         
             time.sleep(1)
 
