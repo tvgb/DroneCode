@@ -32,7 +32,7 @@ def gen(camera):
     while True:
         frame = camera.get_frame()
         
-        if frame == None:
+        if not frame:
             frame = open('./static/images/mario/mario1.jpg', 'rb').read()
 
         yield (b'--frame\r\n'
