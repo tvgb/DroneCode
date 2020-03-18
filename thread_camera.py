@@ -22,6 +22,8 @@ class ThreadCamera():
             if stream != None:
                 self.frame = stream.frame
                 time.sleep(1)
+            else:
+                self.frame = open('./static/images/mario/mario1.jpg').read()
 
     
     def get_frame(self):

@@ -39,9 +39,6 @@ def video_feed():
     thread_camera = ThreadCamera()
     thread_camera.start_camera_thread(stream)
 
-    if thread_camera.get_frame() == None:
-        return Response(open('./static/images/mario/mario1.jpg').read()), mimetype='multipart/x-mixed-replace; boundary=frame')
-
     return Response(gen(thread_camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
