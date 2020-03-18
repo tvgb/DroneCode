@@ -21,8 +21,8 @@ class ThreadCamera():
         while True:
             if stream != None:
                 self.frame = stream.frame
-        
-            time.sleep(1)
+
+            time.sleep(1/30)
 
     
     def get_frame(self):
