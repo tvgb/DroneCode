@@ -143,6 +143,7 @@ img:active {
 #video_feed_img, #video_feed_img:active {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
+    padding: 0;
 }
 
 #messageBox {

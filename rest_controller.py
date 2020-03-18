@@ -201,15 +201,18 @@ def land():
 @app.route('/abort', methods=['POST'])
 def disconnect():
     try:
-        global stream, thread_camera
-
+        global stream
+        
+        print('stopping camera thread')
         thread_camera.stop_camera_thread()
         time.sleep(2)
 
+        print('stopping stream')
         stream.stop()
         stream = None
         time.sleep(2)
 
+        print('Disconnecting from drone')
         controller.disconnect(drone)
         time.sleep(2)
 
