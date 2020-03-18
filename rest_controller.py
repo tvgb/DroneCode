@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 from camera import Camera
 import controller
-import sys, os, threading, numpy as np
+import sys, os, threading, numpy as np, time
 from PIL import Image
 from importlib import import_module
 from stream import Stream
@@ -205,16 +205,13 @@ def disconnect():
         
         print('stopping camera thread')
         thread_camera.stop_camera_thread()
-        time.sleep(2)
 
         print('stopping stream')
         stream.stop()
         stream = None
-        time.sleep(2)
 
         print('Disconnecting from drone')
         controller.disconnect(drone)
-        time.sleep(2)
 
         return jsonify({
             'message': 'Disconnected from drone.'
