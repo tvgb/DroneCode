@@ -141,8 +141,9 @@ img:active {
 }
 
 #video_feed_img, #video_feed_img:active {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
     padding: 0;
 }
 
