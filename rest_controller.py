@@ -1,20 +1,14 @@
+from olympe.messages.ardrone3.Piloting import Landing
+import sys, os, threading, numpy as np, time
 from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
-from camera import Camera
 import controller
-import sys, os, threading, numpy as np, time
 from PIL import Image
 from importlib import import_module
 from stream import Stream
 from thread_camera import ThreadCamera
-
-from olympe.messages.ardrone3.Piloting import Landing
 from haversine import haversine, Unit
 
-if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
-else:
-    from camera import Camera
 
 app = Flask(__name__)
 CORS(app)
