@@ -30,7 +30,10 @@ def index():
 def gen(camera):
     while True:
         frame = camera.get_frame()
-        print(frame)
+        
+        if frame == None:
+            frame = open('./static/images/mario/mario1.jpg', 'rb').read()
+
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
