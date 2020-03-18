@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 from camera import Camera
 import controller
-import sys, os, threading
+import sys, os, threading, numpy as np
 from PIL import Image
 from importlib import import_module
 from stream import Stream
@@ -32,7 +32,7 @@ def gen(camera):
     while True:
         frame = camera.get_frame()
         
-        if not frame:
+        if not isinstance(frame, np.ndarray):
             frame = open('./static/images/mario/mario1.jpg', 'rb').read()
 
         yield (b'--frame\r\n'
