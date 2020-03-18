@@ -21,6 +21,7 @@ CORS(app)
 
 drone = None # Global drone vriable
 stream = None
+thread_camera = None
 
 @app.route('/', methods=['GET'])
 def index():
@@ -40,8 +41,8 @@ def gen(camera):
 
 @app.route('/video_feed', methods=['GET'])
 def video_feed():
+    global thread_camera
     thread_camera = ThreadCamera()
-    thread_camera.start_camera_thread(stream)
 
     return Response(gen(thread_camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -50,6 +51,7 @@ def video_feed():
 def connect_to_drone():
     global drone
     global stream
+    global thread_camera
 
     try:
         drone = controller.get_drone('192.168.42.1')
@@ -57,6 +59,8 @@ def connect_to_drone():
 
         stream = Stream(drone)
         stream.start()
+
+        thread_camera.start_camera_thread(stream)
 
         if connection[0]:
             return jsonify({
