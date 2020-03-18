@@ -17,6 +17,7 @@ drone = None # Global drone vriable
 stream = None
 thread_camera = None
 
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -24,12 +25,22 @@ def index():
 
 @app.route('/video_only', methods=['GET'])
 def video_only():
+    global drone, stream, thread_camera
+
+    drone = controller.get_drone('192.168.42.1')
+    connection = drone.connection()
+
+    stream = Stream(drone)
+    stream.start()
+
+    thread_camera.start_camera_thread(stream)
+
     return render_template('video_only.html')
+
 
 def gen(camera):
     while True:
         frame = camera.get_frame()
-        # print(frame)
 
         if frame == None:
             frame = open('./static/images/pngwave.png', 'rb').read()
