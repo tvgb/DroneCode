@@ -1,7 +1,5 @@
 import time
 from base_camera import BaseCamera
-from stream import 
-
 
 class Camera(BaseCamera):
     """An emulated camera implementation that streams a repeated sequence of
