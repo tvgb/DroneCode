@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app)
 
 drone = None # Global drone vriable
-camera = Camera()
+stream = None
 
 @app.route('/', methods=['GET'])
 def index():
@@ -35,6 +35,8 @@ def gen(camera):
 
 @app.route('/video_feed', methods=['GET'])
 def video_feed():
+    camera = Camera()
+    camera.stream = stream
     return Response(gen(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
@@ -42,7 +44,6 @@ def video_feed():
 def connect_to_drone():
     global drone
     global stream
-    global camera
 
     try:
         drone = controller.get_drone('192.168.42.1')
@@ -50,7 +51,6 @@ def connect_to_drone():
 
         stream = Stream(drone)
         stream.start()
-        camera.set_stream(stream)
 
         if connection[0]:
             return jsonify({
