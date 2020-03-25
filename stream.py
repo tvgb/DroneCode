@@ -19,11 +19,11 @@ class Stream:
         Path(self.dirname).mkdir(parents=True, exist_ok=True)
 
         self.frame = None
-        self.stream_started = False
+        self.isSteaming = False
 
     def start(self):
         
-        if not self.stream_started:
+        if not self.isSteaming:
 
             self.drone.set_streaming_output_files(
                 h264_data_file=os.path.join(self.tempd, 'h264_data.264'),
@@ -42,19 +42,21 @@ class Stream:
             # Start video streaming
             self.drone.start_video_streaming()
 
-            self.stream_started = True
+            self.isSteaming = True
         
         else:
             print('Stream has already started.')
 
-    
+
     def stop(self):
 
-        if self.stream_started:
+        if self.isSteaming:
             # Properly stop the video stream and disconnect
             self.drone.stop_video_streaming()
             # self.drone.disconnection()
             self.h264_stats_file.close()
+
+            self.isSteaming = False
         else:
             print('Cannot stop stream that has not started')
 
