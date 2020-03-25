@@ -13,17 +13,18 @@ Note: Urls are case sensitive! All HTTP request have method POST.
 **Connect to drone**
 URL: `localhost:PORT/connectToDrone` 
 
+
 **Disconnect from drone**
 URL: `localhost:PORT/abort` 
+
 
 **Take off**
 URL: `localhost:PORT/takeOff` 
 
-**Land**
-URL: `localhost:PORT/land` 
 
 **Land**
 URL: `localhost:PORT/land` 
+
 
 **Move to gps coordinate**
 URL: `localhost:PORT/moveTo` 
