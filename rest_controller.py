@@ -3,7 +3,7 @@ import sys, os, threading, numpy as np, time
 from flask import Flask, jsonify, request, render_template, Response
 from flask_cors import CORS, cross_origin
 # import controller
-from PIL import Image
+# from PIL import Image
 # from importlib import import_module
 # from stream import Stream
 # from thread_camera import ThreadCamera

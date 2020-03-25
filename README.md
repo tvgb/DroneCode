@@ -4,6 +4,7 @@ Python script for controlling ANAFI Parrot drone.
 
 ### For test server
 1. Move to branch test-server locally.
+2. Install python dependencies with pip: `pip install -r requirements.txt`
 2. Run command: `$env:FLASK_APP = "rest_controller.py"`
 3. To start server run command: `flask run --host=0.0.0.0`
 
