@@ -2,6 +2,7 @@ const homeIP = 'http://192.168.0.195:5000';
 const droneIP = 'http://192.168.42.23:5000';
 const schooleIP = 'http://10.22.117.235:5000';
 const localIP = 'http://localhost:5000'
+const localIpSecure = 'https://localhost:5000'
 
 const imgPack = "pack2";
 
@@ -171,7 +172,7 @@ const addMessageToBox = function(message) {
 const sendHttpRequest = function(request, data=null, callback=null) {
     $.ajax({
         method: "POST",
-        url: `${localIP}/${request}`,
+        url: `${localIpSecure}/${request}`,
         data: data,
         contentType: "application/json; charset=utf-8",
         xhrFields: {
